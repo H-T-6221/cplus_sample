@@ -18,19 +18,6 @@ int main(int argc, char *argv[]) {
     if(client.getConnect()) {
         return 1;
     }
-/*
-    } else {
-        std::cout << "check connect return 0" << std::endl;
-        client.getHostName();
-        if(!client.checkHost()) {
-            return 1;
-        }
-
-        if(!client.getConnect()) {
-            return 1;
-        }
-    }
-*/
 
     if(client.sendRequest()){
         return 1;

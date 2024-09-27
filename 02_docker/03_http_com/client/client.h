@@ -42,45 +42,6 @@ class Client {
             return 0;
         }
 
-        /* 使わないので必要ない */
-        void getHostName() {
-            host = gethostbyname(ip_addr.c_str());
-        }
-
-        /* gethostbynameでホストが取れないことがないので必要ない */
-        int checkHost() {
-            if (host == NULL) {
-                if (h_errno == HOST_NOT_FOUND) {
-                    printf("host not found : %s\n", ip_addr.c_str());
-                } else {
-                    printf("%s : %s\n", hstrerror(h_errno), ip_addr.c_str());
-                }
-                return 1;
-            }
-            return 0;
-        }
-
-        /* host->h_addr_listはNULLを返すのでaddrptrは常にNULL */
-        int getConnect_old() {         
-            unsigned int **addrptr;
-            addrptr = (unsigned int **)host->h_addr_list;
-
-            while (*addrptr != NULL) {
-                server.sin_addr.s_addr = *(*addrptr);
-                if (connect(sock, (struct sockaddr *)&server, sizeof(server)) == 0) {
-                    break;
-                }
-                addrptr++;
-            }
-
-            if (*addrptr == NULL) {
-                std::cout << "get connect" << std::endl;
-                perror("connect");
-                return 1;
-            }
-            return 0;
-        }
-
         int sendRequest() {
             memset(buf, 0, sizeof(buf));
             snprintf(buf, sizeof(buf), "GET / HTTP/1.0\r\n\r\n");
