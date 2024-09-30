@@ -14,7 +14,8 @@
 class Server{
     private:
         struct sockaddr_in server_addr;
-        std::string ip_addr = "127.0.0.1";
+        //std::string ip_addr = "127.0.0.1";
+        std::string ip_addr = "192.168.20.20";
         int port = 5000;
         int sock;
 
