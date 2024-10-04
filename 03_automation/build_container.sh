@@ -7,3 +7,6 @@ docker exec -it build chmod 755 cplus_sample/04_source/build.sh
 docker exec -it build ./cplus_sample/04_source/build.sh
 
 docker cp build:/root/cplus_sample/04_source/module .
+
+docker stop build
+docker rm build
