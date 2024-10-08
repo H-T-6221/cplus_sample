@@ -13,10 +13,11 @@ cmake ..
 make
 cd -
 
-if [ -d module ]; then
-    rm -rf module
-fi
+#if [ -d module ]; then
+#    rm -rf module
+#fi
 
-mkdir module
-cp -p build/client/client module
-cp -p build/server/server module
+#mkdir module
+#cp -p build/client module
+#cp -p build/server module
+#cp -p build/libLog.a module

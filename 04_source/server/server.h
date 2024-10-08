@@ -11,6 +11,8 @@
 #include <sstream>
 #include <iostream>
 
+#include "log.h"
+
 class Server{
     private:
         struct sockaddr_in server_addr;
@@ -20,6 +22,7 @@ class Server{
         int sock;
 
     public:
+        Log log;
         int setSocket();
         int setBind();
         std::string setMessage();

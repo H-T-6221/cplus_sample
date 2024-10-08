@@ -7,5 +7,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # set the project name and version
 project(server CXX)
 
+# compile library file
+## status src library
+set(LOG_NAME
+    ../log/log.h
+    ../log/log.cpp
+    )
+add_library(Log STATIC ${LOG_NAME})
+
 # compile executable file
 add_executable(server server.cpp)
+
+# link to main
+target_link_libraries(server Log)
+
+# set include directory
+target_include_directories(server PRIVATE ../log)
+target_include_directories(Log INTERFACE ../log/log)

@@ -23,6 +23,7 @@ int Server::setSocket() {
 }
 
 int Server::setBind() {
+    log.print("Server::Set bind socket");
     if (bind(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) != 0) {
         std::cout << "Failed to bind. error:" << strerror(errno) << std::endl;
         close(sock);
@@ -64,15 +65,17 @@ void Server::wait(std::string response) {
         auto connfd = accept(sock, nullptr, nullptr);
         if (connfd < 0) {
             std::cout << "Failed to accept." << std::endl;
+            log.print("Server::Failed to accept.");
             break;
         }
 
         memset(inbuf, 0, sizeof(inbuf));
         recv(connfd, inbuf, sizeof(inbuf), 0);
-
         if (send(connfd, response.c_str(), response.length(), 0) == -1) {
             std::cout << "Failed to send." << std::endl;
+            log.print("Server::Failed to send.");
         }
+        log.print("Server::Success send message");
     }
 
     close(sock);
