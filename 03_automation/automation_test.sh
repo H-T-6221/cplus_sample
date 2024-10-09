@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker exec -it /root/sender server &
-docker exec -it /root/reciever client &
+docker exec -it sender /root/server &
+docker exec -it reciever /root/client &
